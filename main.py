@@ -2,10 +2,11 @@
 # coding=utf-8
 
 import time
+import sys
 import jenkins
 from qqbot import _bot as bot
 
-jenkins_server = jenkins.Jenkins(url='http://jenkins.great-tao.com:8080/', username='hubin', password='QtVShbCMoIyN0pAV')
+jenkins_server = jenkins.Jenkins(url='http://jenkins.great-tao.com:8080/', username=sys.argv[1], password=sys.argv[2])
 
 def main():
     qq_id = '136314998'
