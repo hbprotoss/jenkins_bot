@@ -70,7 +70,7 @@ def notify(contact, build, isCreate):
     if filter_message(name):
         return
     warning_msg = '前方高能!!!' if 'soa' in name and isCreate else ''
-    bot.SendTo(contact, '%s %s %s发布 %s\n%s' % (warning_msg, build_user, '正在' if isCreate else '完成', name, url))
+    bot.SendTo(contact, '%s %s %s %s\n%s' % (warning_msg, build_user, '正在发布' if isCreate else '已完成', name, url))
 
 def filter_message(msg):
     return 'fe-gt-static' in msg
