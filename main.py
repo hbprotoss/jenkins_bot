@@ -67,7 +67,7 @@ def notify(contact, build, isCreate):
     name = build['name']
     number = build['number']
     build_user = get_build_user(jenkins_server.get_build_info(name, number))
-    warning_msg = '前方高能!!!' if 'soa' in name else ''
+    warning_msg = '前方高能!!!' if 'soa' in name and isCreate else ''
     bot.SendTo(contact, '%s %s %s发布 %s\n%s' % (warning_msg, build_user, '正在' if isCreate else '完成', name, url))
 
 if __name__ == '__main__':
