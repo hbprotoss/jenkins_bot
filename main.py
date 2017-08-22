@@ -10,7 +10,7 @@ jenkins_server = jenkins.Jenkins(url='http://jenkins.great-tao.com:8080/', usern
 
 def main():
     qq_id = '136314998'
-    group_name = '机器人测试'
+    group_name = '浙江大道-技术部'
     running_job_dict = {}
 
     bot.Login(['-q', qq_id])
