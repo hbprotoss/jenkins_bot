@@ -61,7 +61,7 @@ def notify_created(contact, created_builds):
         notify(contact, build, True)
 
 def notify(contact, build, isCreate):
-    if not build:
+    if not build or filter_message(build):
         return
     url = build['url']
     name = build['name']
@@ -72,13 +72,11 @@ def notify(contact, build, isCreate):
     except Exception:
         print(build_info)
         build_user = '未知人士'
-    if filter_message(name):
-        return
     warning_msg = '前方高能!!!' if 'soa' in name and isCreate else ''
     bot.SendTo(contact, '%s %s %s %s\n%s' % (warning_msg, build_user, get_operation_message(build_info, isCreate), name, url))
 
-def filter_message(msg):
-    return 'fe-gt-static' in msg
+def filter_message(build):
+    return 'fe-gt-static' in build['name']
 
 def get_operation_message(build_info, isCreate):
     if isCreate:
