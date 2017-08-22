@@ -75,10 +75,18 @@ def notify(contact, build, isCreate):
     if filter_message(name):
         return
     warning_msg = '前方高能!!!' if 'soa' in name and isCreate else ''
-    bot.SendTo(contact, '%s %s %s %s\n%s' % (warning_msg, build_user, '正在发布' if isCreate else '已完成', name, url))
+    bot.SendTo(contact, '%s %s %s %s\n%s' % (warning_msg, build_user, get_operation_message(build_info, isCreate), name, url))
 
 def filter_message(msg):
     return 'fe-gt-static' in msg
+
+def get_operation_message(build_info, isCreate):
+    if isCreate:
+        return '正在发布'
+    if build_info['result'] == 'FAILURE':
+        return '失败了'
+    else:
+        return '已完成'
 
 if __name__ == '__main__':
     main()
