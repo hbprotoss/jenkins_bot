@@ -66,7 +66,12 @@ def notify(contact, build, isCreate):
     url = build['url']
     name = build['name']
     number = build['number']
-    build_user = get_build_user(jenkins_server.get_build_info(name, number))
+    try:
+        build_info = jenkins_server.get_build_info(name, number)
+        build_user = get_build_user(build_info)
+    except Exception:
+        print(build_info)
+        build_user = '未知人士'
     if filter_message(name):
         return
     warning_msg = '前方高能!!!' if 'soa' in name and isCreate else ''
